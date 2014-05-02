@@ -18,8 +18,9 @@ JasmineDemo.Models = (function (namespace) {
             this.todoItem(new namespace.TodoItemViewModel());
         }
 
-        this.addItem = function(todoItem) {
-            that.todoItems.push(todoItem);
+        this.addItem = function() {
+            that.todoItems.push(that.todoItem);
+            that.todoItem(null);
         }
     };
 

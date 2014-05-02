@@ -1,0 +1,13 @@
+﻿@{
+    ViewBag.Title = "Todo";
+}
+
+@Html.RenderHtmlPartial("todo/index.html")
+
+@Scripts.Render("~/bundles/todo")
+
+<script type="text/javascript">
+    $(function() {
+        ko.applyBindings(new JasmineDemo.Models.TodoViewModel());
+    });
+</script>

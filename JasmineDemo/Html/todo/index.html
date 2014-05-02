@@ -1,0 +1,19 @@
+﻿<h2>Jasmine Todo Application</h2>
+
+<div id="todoApp">
+    <div id="todoList">
+        <div data-bind="visible: todoItems().length == 0">
+            There are no todo items available
+        </div>
+        <div data-bind="visible: todoItems().length != 0">
+            Score!    
+        </div>
+    </div>
+    <div id="newTodo" data-bind="visible: todoItem() != null">
+        I'm visible!
+    </div>
+    <div>
+        <input type="button" value="Add" data-bind="click: showAdd"/>
+        <input type="button" value="Delete"/>
+    </div>
+</div>
