@@ -13,14 +13,20 @@ JasmineDemo.Models = (function (namespace) {
         var that = this;
         this.todoItems = ko.observableArray([]);
         this.todoItem = ko.observable(null);
+        this.addMode = ko.observable(false);
 
         this.showAdd = function() {
             this.todoItem(new namespace.TodoItemViewModel());
+            this.addMode(true);
         }
 
         this.addItem = function() {
             that.todoItems.push(that.todoItem);
             that.todoItem(null);
+        }
+
+        this.cancelAddItem = function() {
+            this.addMode(false);
         }
     };
 

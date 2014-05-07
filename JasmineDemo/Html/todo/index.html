@@ -6,13 +6,45 @@
             There are no todo items available
         </div>
         <div data-bind="visible: todoItems().length != 0">
-            Score!    
+            <table>
+                <thead>
+                    <tr>
+                        <td>Title</td>
+                        <td>Priority</td>
+                        <td>Due Date</td>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: todoItems">
+                    <tr>
+                        <td data-bind="text: title"></td>
+                        <td data-bind="text: priority"></td>
+                        <td data-bind="text: dueDate"></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
-    <div id="newTodo" data-bind="visible: todoItem() != null">
-        I'm visible!
+    <div id="newTodo" data-bind="visible: addMode() == true">
+        <div>
+            <div>
+                <label for="todoTitle">Title:</label>
+                <input type="text" id="todoTitle" data-bind="value: todoItem.title"/>
+            </div>
+            <div>
+                <label for="todoPriority">Priority:</label>
+                <input type="text" id="todoPriority" data-bind="value: todoItem.priority"/>
+            </div>
+            <div>
+                <label for="todoDescription">Description:</label>
+                <textarea id="todoDescription" data-bind="value: todoItem.description"></textarea>
+            </div>
+        </div>
+        <div>
+            <input type="button" value="Save" data-bind="click: addItem"/>
+            <input type="button" value="Cancel" data-bind="click: cancelAddItem"/>
+        </div>
     </div>
-    <div>
+    <div data-bind="visible: addMode() == false">
         <input type="button" value="Add" data-bind="click: showAdd"/>
         <input type="button" value="Delete"/>
     </div>
