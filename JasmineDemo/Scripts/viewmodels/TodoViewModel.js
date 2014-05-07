@@ -14,19 +14,40 @@ JasmineDemo.Models = (function (namespace) {
         this.todoItems = ko.observableArray([]);
         this.todoItem = ko.observable(new namespace.TodoItemViewModel());
         this.addMode = ko.observable(false);
+        this.editMode = ko.observable(false);
+        this.currentItem = ko.observable(null);
 
         this.showAdd = function() {
-            this.todoItem(new namespace.TodoItemViewModel());
-            this.addMode(true);
+            that.todoItem(new namespace.TodoItemViewModel());
+            that.addMode(true);
         }
 
-        this.addItem = function() {
-            that.todoItems.push(that.todoItem);
-            this.addMode(false);
+        this.addEditItem = function() {
+            if (this.addMode()) {
+                that.todoItems.push(that.todoItem());
+                that.addMode(false);
+                return;
+            }
+
+            that.editMode(false);
         }
 
-        this.cancelAddItem = function() {
-            this.addMode(false);
+        this.todoClick = function(todoItem) {
+            that.currentItem(todoItem);
+        }
+
+        this.editCurrent = function() {
+            that.todoItem(that.currentItem());
+            that.editMode(true);
+        }
+
+        this.cancelAddEdit = function() {
+            that.addMode(false);
+            that.editMode(false);
+        }
+
+        this.deleteCurrent = function() {
+            that.todoItems.remove(that.currentItem());
         }
     };
 

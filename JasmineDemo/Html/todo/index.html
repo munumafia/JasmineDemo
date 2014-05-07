@@ -15,7 +15,7 @@
                     </tr>
                 </thead>
                 <tbody data-bind="foreach: todoItems">
-                    <tr>
+                    <tr data-bind="click: $parent.todoClick">
                         <td data-bind="text: title"></td>
                         <td data-bind="text: priority"></td>
                         <td data-bind="text: dueDate"></td>
@@ -24,7 +24,7 @@
             </table>
         </div>
     </div>
-    <div id="newTodo" data-bind="visible: addMode() == true">
+    <div id="newTodo" data-bind="visible: addMode() == true || editMode() == true">
         <div data-bind="with: todoItem()">
             <div>
                 <label for="todoTitle">Title:</label>
@@ -35,17 +35,22 @@
                 <input type="text" id="todoPriority" data-bind="value: priority"/>
             </div>
             <div>
+                <label for="todoDueDate">Due Date:</label>
+                <input type="text" id="todoDueDate" data-bind="value: dueDate"/>
+            </div>
+            <div>
                 <label for="todoDescription">Description:</label>
                 <textarea id="todoDescription" data-bind="value: description"></textarea>
             </div>
         </div>
         <div>
-            <input type="button" value="Save" data-bind="click: addItem"/>
-            <input type="button" value="Cancel" data-bind="click: cancelAddItem"/>
+            <input type="button" value="Save" data-bind="click: addEditItem"/>
+            <input type="button" value="Cancel" data-bind="click: cancelAddEdit"/>
         </div>
     </div>
-    <div data-bind="visible: addMode() == false">
+    <div data-bind="visible: addMode() == false && editMode() == false">
         <input type="button" value="Add" data-bind="click: showAdd"/>
-        <input type="button" value="Delete"/>
+        <input type="button" value="Edit" data-bind="click: editCurrent"/>
+        <input type="button" value="Delete" data-bind="click: deleteCurrent"/>
     </div>
 </div>
