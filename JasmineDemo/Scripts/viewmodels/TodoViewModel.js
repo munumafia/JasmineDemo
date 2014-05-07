@@ -12,7 +12,7 @@ JasmineDemo.Models = (function (namespace) {
     namespace.TodoViewModel = function() {
         var that = this;
         this.todoItems = ko.observableArray([]);
-        this.todoItem = ko.observable(null);
+        this.todoItem = ko.observable(new namespace.TodoItemViewModel());
         this.addMode = ko.observable(false);
 
         this.showAdd = function() {
@@ -22,7 +22,7 @@ JasmineDemo.Models = (function (namespace) {
 
         this.addItem = function() {
             that.todoItems.push(that.todoItem);
-            that.todoItem(null);
+            this.addMode(false);
         }
 
         this.cancelAddItem = function() {
