@@ -9,8 +9,9 @@ JasmineDemo.Models = (function (namespace) {
         this.dueDate = ko.observable(dueDate || '');
     };
 
-    namespace.TodoViewModel = function() {
+    namespace.TodoViewModel = function(todoService) {
         var that = this;
+        this.todoService = todoService;
         this.todoItems = ko.observableArray([]);
         this.todoItem = ko.observable(new namespace.TodoItemViewModel());
         this.addMode = ko.observable(false);

@@ -15,8 +15,7 @@ JasmineDemo.Services = (function (namespace) {
             data: {
                 priority: todoItem.priority(),
                 title: todoItem.title(),
-                description: todoItem.description(),
-                dueDate: todoItem.dueDate()
+                description: todoItem.description()
             }
         });
     }
